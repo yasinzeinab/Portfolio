@@ -6,7 +6,7 @@ Denne mappen inneholder en enkel statisk portefølje til bruk i søknad om praks
 
 - `index.html` – Porteføljens forside
 - `cv.html` – Egen side for CV og erfaring
-- `prosjekter.html` – Egen side for prosjektene dine
+- `prosjekter.html` – Egen side for prosjektene mine
 - `styles.css` – Enkel stil og layout
 
 # Link til nettside
