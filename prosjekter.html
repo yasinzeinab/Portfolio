@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prosjektportefølje - Yasin Hussein</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <nav class="topnav" aria-label="Hovedmeny">
+        <a href="index.html">Hjem</a>
+        <a href="cv.html">CV</a>
+        <a href="prosjekter.html" aria-current="page">Prosjekter</a>
+      </nav>
+      <p class="eyebrow">Prosjektportefølje</p>
+      <h1>Arbeidet mitt</h1>
+      <p class="lead">Her samler jeg prosjekter jeg har jobbet med. Trykk på et prosjekt for å lese mer og se bilder eller video.</p>
+      <div class="buttons">
+        <a href="index.html" class="button secondary">Tilbake til forsiden</a>
+      </div>
+    </div>
+  </header>
+
+          <!-- Prosjektkort -->
+  <main class="container">
+    <section class="section" aria-label="Prosjekter">
+      <div class="project-grid">
+        <details class="project-card">
+          <summary>
+            <span class="project-label">Prosjekt</span>
+            <h2>Reklameplakat for ulike produkter</h2>
+            <p>Tok bilder av ulike produkter og designet en reklameplakat for hvert produkt.</p>
+            <span class="project-open">Trykk for å lese mer <span aria-hidden="true">↓</span></span>
+          </summary>
+          
+          <!-- Prosjektdetaljer  -->
+          <div class="project-detail">
+            <h3>Om prosjektet</h3>
+            <p>Prosjektet gikk ut på å ta bilder av produkter vi hadde tilgjengelig og designe reklameplakater for dem.</p>
+            <p>Jeg tok produktbilder og brukte dem i utformingen av reklameplakatene.</p>
+            <div class="project-gallery" aria-label="Bilder fra prosjektet">
+              <button class="gallery-thumbnail" type="button" aria-label="Vis Coca-Cola-plakaten i stor størrelse">
+                <img src="./ReklamePlakater/Coca-Cola.png" alt="Reklameplakat for Coca-Cola">
+              </button>
+              <button class="gallery-thumbnail" type="button" aria-label="Vis suppeplakatene i stor størrelse">
+                <img src="./ReklamePlakater/Kremet Kylling, Tomatsuppe, Grønnsaksuppe.png" alt="Reklameplakater for kremet kyllingsuppe, tomatsuppe og grønnsakssuppe">
+              </button>
+              <button class="gallery-thumbnail" type="button" aria-label="Vis Kvikk Lunsj-plakaten i stor størrelse">
+                <img src="./ReklamePlakater/Kvikk Lunsj.png" alt="Reklameplakat for Kvikk Lunsj">
+              </button>
+              <button class="gallery-thumbnail" type="button" aria-label="Vis SMASH Bar-plakaten i stor størrelse">
+                <img src="./ReklamePlakater/SMASH Bar.png" alt="Reklameplakat for SMASH Bar">
+              </button>
+              <button class="gallery-thumbnail" type="button" aria-label="Vis SMASH-plakaten i stor størrelse">
+                <img src="./ReklamePlakater/SMASH!.png" alt="Reklameplakat for SMASH!">
+              </button>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+  
+  <dialog class="image-viewer" aria-label="Bildevisning">
+    <button class="image-viewer-close" type="button" aria-label="Lukk bildevisning">Lukk</button>
+    <button class="image-viewer-previous" type="button" aria-label="Forrige bilde">‹</button>
+    <figure>
+      <img class="image-viewer-image" alt="">
+      <figcaption class="image-viewer-caption"></figcaption>
+    </figure>
+    <button class="image-viewer-next" type="button" aria-label="Neste bilde">›</button>
+    <p class="image-viewer-count" aria-live="polite"></p>
+  </dialog>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Yasin Hussein</p>
+    </div>
+  </footer>
+  <script>
+    const viewer = document.querySelector(".image-viewer");
+    const viewerImage = viewer.querySelector(".image-viewer-image");
+    const viewerCaption = viewer.querySelector(".image-viewer-caption");
+    const viewerCount = viewer.querySelector(".image-viewer-count");
+    const thumbnails = Array.from(document.querySelectorAll(".gallery-thumbnail"));
+    let activeImageIndex = 0;
+
+    function showImage(index) {
+      activeImageIndex = (index + thumbnails.length) % thumbnails.length;
+      const image = thumbnails[activeImageIndex].querySelector("img");
+      viewerImage.src = image.src;
+      viewerImage.alt = image.alt;
+      viewerCaption.textContent = image.alt;
+      viewerCount.textContent = `${activeImageIndex + 1} / ${thumbnails.length}`;
+    }
+
+    thumbnails.forEach((thumbnail, index) => {
+      thumbnail.addEventListener("click", () => {
+        showImage(index);
+        viewer.showModal();
+      });
+    });
+
+    viewer.querySelector(".image-viewer-close").addEventListener("click", () => viewer.close());
+    viewer.querySelector(".image-viewer-previous").addEventListener("click", () => showImage(activeImageIndex - 1));
+    viewer.querySelector(".image-viewer-next").addEventListener("click", () => showImage(activeImageIndex + 1));
+
+    viewer.addEventListener("click", (event) => {
+      if (event.target === viewer) viewer.close();
+    });
+
+    viewer.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") showImage(activeImageIndex - 1);
+      if (event.key === "ArrowRight") showImage(activeImageIndex + 1);
+    });
+  </script>
+</body>
+</html>
