@@ -11,4 +11,4 @@ Denne nettsiden inneholder en enkel statisk portefølje til bruk i søknad om pr
 
 # Link til nettside
 
-- https://yasinzeinab.github.io/Portfolio/`
+- https://yasinzeinab.github.io/Portfolio/
